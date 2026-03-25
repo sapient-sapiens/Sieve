@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sieve.local/schemas/digest-document.json",
+  "title": "DigestDocument",
+  "type": "object",
+  "required": ["job_id", "status", "source_text", "spans", "omitted_ranges"],
+  "properties": {
+    "job_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "completed", "failed"]
+    },
+    "source_text": { "type": "string" },
+    "word_count_before": { "type": "integer", "minimum": 0 },
+    "word_count_after": { "type": "integer", "minimum": 0 },
+    "chunking_mode": { "type": "string", "enum": ["blank_line", "speaker_line"] },
+    "error": { "type": "string" },
+    "progress_phase": { "type": "string" },
+    "progress_step": { "type": "integer", "minimum": 0 },
+    "progress_total": { "type": "integer", "minimum": 0 },
+    "spans": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/span" }
+    },
+    "omitted_ranges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/omittedRange" }
+    }
+  },
+  "$defs": {
+    "spanType": {
+      "type": "string",
+      "enum": [
+        "source_kept",
+        "truncation_marker"
+      ]
+    },
+    "span": {
+      "type": "object",
+      "required": ["id", "type", "text"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "$ref": "#/$defs/spanType" },
+        "text": { "type": "string" },
+        "start_offset": { "type": "integer", "minimum": 0 },
+        "end_offset": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string" }
+      }
+    },
+    "omittedRange": {
+      "type": "object",
+      "required": ["start", "end", "reason"],
+      "properties": {
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string" },
+        "word_count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
