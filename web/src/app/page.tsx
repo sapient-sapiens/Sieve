@@ -318,8 +318,7 @@ export default function Home() {
           Sieve
         </h1>
         <p className="mx-auto max-w-2xl text-sm text-neutral-500 dark:text-neutral-400">
-          Add raw text or a YouTube link. Tell it what you care about — everything else is
-          filtered out. Every edit is labeled so you can see exactly what changed.
+          Add raw text or a YouTube link. Say what you care about and the rest gets filtered out.
         </p>
       </header>
 
@@ -359,9 +358,6 @@ export default function Home() {
                   YouTube URL
                 </label>
               </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                YouTube mode pulls captions automatically.
-              </p>
             </fieldset>
 
             <label className="block space-y-1 text-sm">
@@ -386,8 +382,8 @@ export default function Home() {
             </h2>
             <p className="mt-1.5 max-w-2xl text-sm text-neutral-600 dark:text-neutral-400">
               {sourceMode === "raw text"
-                ? "Articles, newsletters, transcripts — blank lines between paragraphs help."
-                : "Captions are pulled automatically when available."}
+                ? "Paste any long-form text. Blank lines between paragraphs help."
+                : "Paste a link and captions will be pulled automatically."}
             </p>
           </div>
           <div className="space-y-6">
@@ -500,7 +496,7 @@ export default function Home() {
               Example
             </div>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              JRE #2219 — Joe Rogan & Mark Zuckerberg
+              JRE #2219, Joe Rogan & Mark Zuckerberg
             </p>
           </div>
           <div className="max-w-3xl rounded-lg border border-neutral-200/90 bg-neutral-50/90 px-4 py-3 dark:border-neutral-700/80 dark:bg-neutral-900/50">

@@ -46,7 +46,7 @@ function prepLine(submitPhase: ProgressSubmitPhase, sourceMode: "raw text" | "yo
   if (submitPhase === "transcript") return "Fetching captions…";
   if (submitPhase === "job") return "Submitting…";
   if (submitPhase === "polling" && (jobStatus == null || jobStatus === "pending")) {
-    return sourceMode === "youtube" ? "Queued — starting soon…" : "Starting…";
+    return sourceMode === "youtube" ? "Queued, starting soon…" : "Starting…";
   }
   return null;
 }
@@ -154,7 +154,7 @@ export function DigestProgress({
                   {progressTotal != null && progressStep != null && progressTotal > 0 ? (
                     <span className="font-normal text-neutral-500 dark:text-neutral-400">
                       {" "}
-                      — batch {progressStep} of {progressTotal}
+                      · batch {progressStep} of {progressTotal}
                     </span>
                   ) : null}
                 </span>
