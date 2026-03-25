@@ -336,27 +336,27 @@ export default function Home() {
           <div className="space-y-6">
             <fieldset className="space-y-2 text-sm">
               <legend className="text-[13px] font-medium text-[var(--foreground)]">Input</legend>
-              <div className="flex flex-wrap gap-6">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="source-mode"
-                    value="raw text"
-                    checked={sourceMode === "raw text"}
-                    onChange={() => setSourceMode("raw text")}
-                  />
-                  Raw text
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="source-mode"
-                    value="youtube"
-                    checked={sourceMode === "youtube"}
-                    onChange={() => setSourceMode("youtube")}
-                  />
-                  YouTube URL
-                </label>
+              <div
+                className="inline-flex rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800"
+                role="radiogroup"
+                aria-label="Source mode"
+              >
+                {(["raw text", "youtube"] as const).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    role="radio"
+                    aria-checked={sourceMode === mode}
+                    onClick={() => setSourceMode(mode)}
+                    className={`rounded-md px-3.5 py-1.5 text-[13px] font-medium transition-all ${
+                      sourceMode === mode
+                        ? "bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-neutral-100"
+                        : "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
+                    }`}
+                  >
+                    {mode === "raw text" ? "Raw text" : "YouTube URL"}
+                  </button>
+                ))}
               </div>
             </fieldset>
 
