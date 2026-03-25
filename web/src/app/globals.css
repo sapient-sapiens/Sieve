@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #a1a1aa;
+
+  --mark-rose: rgba(244, 63, 94, 0.09);
+  --mark-rose-strong: rgba(244, 63, 94, 0.16);
+  --mark-rose-fg: #be123c;
+  --mark-teal: rgba(20, 184, 166, 0.08);
+  --mark-teal-strong: rgba(20, 184, 166, 0.18);
+  --mark-teal-fg: #0d9488;
+  --digest-border: #e5e7eb;
+  --digest-panel: #f9fafb;
+  /* Workflow: secondary prefs strip vs primary composer */
+  --prefs-accent: rgba(245, 158, 11, 0.45);
+  --composer-surface: #fffefb;
+  --composer-border: rgba(245, 158, 11, 0.35);
+  --composer-glow: rgba(245, 158, 11, 0.06);
+  /* Subtle “terminal / HUD” accent — not loud */
+  --composer-neon: rgba(52, 211, 153, 0.85);
+  --composer-neon-wash: rgba(16, 185, 129, 0.07);
+  --composer-neon-glow: rgba(45, 212, 191, 0.14);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --muted: #71717a;
+
+    --mark-rose: rgba(251, 113, 133, 0.10);
+    --mark-rose-strong: rgba(251, 113, 133, 0.20);
+    --mark-rose-fg: #fb7185;
+    --mark-teal: rgba(45, 212, 191, 0.09);
+    --mark-teal-strong: rgba(45, 212, 191, 0.20);
+    --mark-teal-fg: #2dd4bf;
+    --digest-border: #27272a;
+    --digest-panel: #111111;
+    --prefs-accent: rgba(251, 191, 36, 0.35);
+    --composer-surface: #12110e;
+    --composer-border: rgba(251, 191, 36, 0.22);
+    --composer-glow: rgba(251, 191, 36, 0.04);
+    --composer-neon: rgba(110, 231, 183, 0.95);
+    --composer-neon-wash: rgba(16, 185, 129, 0.12);
+    --composer-neon-glow: rgba(52, 211, 153, 0.22);
+  }
+}
+
+/* Home workflow: prefs = quiet rail; composer = main action surface */
+.digest-prefs-rail {
+  border-left: 2px solid var(--prefs-accent);
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .digest-prefs-rail {
+    padding-left: 1.25rem;
+  }
+}
+
+.digest-composer {
+  position: relative;
+  isolation: isolate;
+  border-radius: 1rem;
+  border: 1px solid var(--composer-border);
+  background:
+    linear-gradient(125deg, var(--composer-neon-wash) 0%, transparent 42%),
+    linear-gradient(180deg, var(--composer-glow) 0%, var(--composer-surface) 2.75rem);
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.06),
+    inset 0 1px 0 0 rgba(52, 211, 153, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 28px -10px rgba(245, 158, 11, 0.1),
+    0 0 52px -18px var(--composer-neon-glow);
+}
+
+.digest-composer::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--composer-neon),
+    rgba(52, 211, 153, 0.25),
+    transparent
+  );
+  opacity: 0.45;
+  filter: blur(0.2px);
+  pointer-events: none;
+}
+
+.digest-composer > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes digest-progress-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.digest-progress-shimmer {
+  animation: digest-progress-shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digest-progress-shimmer {
+    animation: none;
+    transform: none;
+    opacity: 0.65;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .digest-composer {
+    box-shadow:
+      0 0 0 1px rgba(52, 211, 153, 0.1),
+      inset 0 1px 0 0 rgba(52, 211, 153, 0.18),
+      0 1px 2px rgba(0, 0, 0, 0.35),
+      0 12px 36px -14px rgba(251, 191, 36, 0.06),
+      0 0 64px -20px var(--composer-neon-glow);
+  }
+
+  .digest-composer::after {
+    opacity: 0.55;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* ── Word-count bar ── */
+
+.word-count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--digest-border);
+  background: var(--digest-panel);
+}
+
+.word-count-left,
+.word-count-right {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.word-count-number {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.word-count-number--before {
+  color: var(--mark-rose-fg);
+}
+
+.word-count-number--after {
+  color: var(--mark-teal-fg);
+}
+
+.word-count-unit {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.word-count-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.word-count-arrow-svg {
+  opacity: 0.5;
+}
+
+.word-count-pct {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* ── Diff columns ── */
+
+.diff-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+  margin-bottom: 0.5rem;
+}
+.diff-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+  row-gap: 0.1rem;
+}
+
+.diff-col {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  padding: 0.15rem 0;
+}
+
+/* ── Highlight marks ── */
+
+.mark-rose {
+  background: var(--mark-rose);
+  border-radius: 3px;
+  padding: 0.08em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.mark-teal {
+  background: var(--mark-teal);
+  border-radius: 3px;
+  padding: 0.08em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ── Margin notes ── */
+
+.diff-note {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--mark-rose-fg);
+  opacity: 0.55;
+  margin-top: 0.15rem;
+}
+
+/* ── Collapse long omitted text ── */
+
+.diff-clamp {
+  max-height: 5.5rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 50%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent);
+}
