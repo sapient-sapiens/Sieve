@@ -123,7 +123,7 @@ function DiffRow({ span }: { span: Span }) {
             {long && (
               <button
                 type="button"
-                className="mt-0.5 text-[11px] text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300"
+                className="mt-0.5 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300"
                 onClick={() => setExpanded((v) => !v)}
               >
                 {expanded ? "▴ less" : "▾ more"}

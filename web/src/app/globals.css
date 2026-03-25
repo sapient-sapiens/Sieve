@@ -175,9 +175,9 @@ body {
 }
 
 .word-count-number {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -190,10 +190,10 @@ body {
 }
 
 .word-count-unit {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--muted);
 }
 
@@ -211,7 +211,7 @@ body {
 }
 
 .word-count-pct {
-  font-size: 0.6rem;
+  font-size: 0.688rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--muted);
@@ -227,10 +227,10 @@ body {
   margin-bottom: 0.5rem;
 }
 .diff-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
@@ -242,8 +242,8 @@ body {
 }
 
 .diff-col {
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.938rem;
+  line-height: 1.75;
   padding: 0.15rem 0;
 }
 
@@ -269,7 +269,7 @@ body {
 
 .diff-note {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.813rem;
   font-style: italic;
   line-height: 1.5;
   color: var(--mark-rose-fg);

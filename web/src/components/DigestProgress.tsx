@@ -125,18 +125,18 @@ export function DigestProgress({
       aria-busy={jobStatus === "running"}
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-700/90 dark:text-emerald-400/85">
+        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-emerald-700/90 dark:text-emerald-400/85">
           In progress
         </p>
         {displayWords != null && displayWords > 0 && (
-          <p className="text-xs tabular-nums text-neutral-500 dark:text-neutral-400">
+          <p className="text-[13px] tabular-nums text-neutral-500 dark:text-neutral-400">
             ~{displayWords.toLocaleString()} words in source
           </p>
         )}
       </div>
 
       {early && jobStatus !== "running" ? (
-        <div className="mb-2 text-xs text-neutral-600 dark:text-neutral-400" id={barHeadingId}>
+        <div className="mb-2 text-[13px] text-neutral-600 dark:text-neutral-400" id={barHeadingId}>
           <span className="font-medium text-[var(--foreground)]">{early}</span>
         </div>
       ) : null}
@@ -146,7 +146,7 @@ export function DigestProgress({
           {hasServerProgress && runPercent != null ? (
             <>
               <div
-                className="mb-2 flex flex-col gap-1 text-xs text-neutral-600 dark:text-neutral-400 sm:flex-row sm:items-center sm:justify-between sm:gap-2"
+                className="mb-2 flex flex-col gap-1 text-[13px] text-neutral-600 dark:text-neutral-400 sm:flex-row sm:items-center sm:justify-between sm:gap-2"
                 id={barHeadingId}
               >
                 <span className="font-medium text-[var(--foreground)]">
@@ -183,19 +183,19 @@ export function DigestProgress({
                 />
               </div>
               {progressPhase === "scoring" && (
-                <p className="mt-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400 transition-opacity duration-500">
+                <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400 transition-opacity duration-500">
                   {phrase}
                 </p>
               )}
               {progressPhase === "assembling" && (
-                <p className="mt-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+                <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
                   Building the final digest…
                 </p>
               )}
             </>
           ) : (
             <>
-              <div className="mb-2 text-xs text-neutral-600 dark:text-neutral-400" id={barHeadingId}>
+              <div className="mb-2 text-[13px] text-neutral-600 dark:text-neutral-400" id={barHeadingId}>
                 <span className="font-medium text-[var(--foreground)]">Starting…</span>
               </div>
               <div
@@ -206,7 +206,7 @@ export function DigestProgress({
               >
                 <div className="digest-progress-shimmer h-full w-1/3 rounded-full bg-gradient-to-r from-emerald-500/0 via-emerald-500/70 to-emerald-500/0" />
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <p className="mt-2 text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">
                 Connecting to the job…
               </p>
             </>

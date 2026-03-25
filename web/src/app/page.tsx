@@ -310,14 +310,14 @@ export default function Home() {
 
   return (
     <div className="mx-auto min-h-screen max-w-7xl px-4 py-10 sm:px-6">
-      <header className="mb-10 space-y-3 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+      <header className="mb-12 space-y-3 text-center">
+        <p className="text-[13px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
           Read only what matters
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
           Sieve
         </h1>
-        <p className="mx-auto max-w-2xl text-sm text-neutral-500 dark:text-neutral-400">
+        <p className="mx-auto max-w-2xl text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
           Add raw text or a YouTube link. Say what you care about and the rest gets filtered out.
         </p>
       </header>
@@ -326,16 +326,16 @@ export default function Home() {
         <section aria-labelledby="prefs-heading" className="digest-prefs-rail max-w-3xl">
           <h2
             id="prefs-heading"
-            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-500 dark:text-neutral-400"
+            className="mb-4 text-xs font-semibold uppercase tracking-[0.08em] text-neutral-500 dark:text-neutral-400"
           >
             Your focus
           </h2>
-          <p className="mb-5 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-500">
+          <p className="mb-5 max-w-xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-500">
             What do you want more of? What should be skipped?
           </p>
           <div className="space-y-6">
-            <fieldset className="space-y-2 text-sm">
-              <legend className="text-[13px] font-medium text-[var(--foreground)]">Input</legend>
+            <fieldset className="space-y-2.5 text-[15px]">
+              <legend className="text-sm font-medium text-[var(--foreground)]">Input</legend>
               <div
                 className="inline-flex rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800"
                 role="radiogroup"
@@ -348,7 +348,7 @@ export default function Home() {
                     role="radio"
                     aria-checked={sourceMode === mode}
                     onClick={() => setSourceMode(mode)}
-                    className={`rounded-md px-3.5 py-1.5 text-[13px] font-medium transition-all ${
+                    className={`rounded-md px-3.5 py-1.5 text-sm font-medium transition-all ${
                       sourceMode === mode
                         ? "bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-neutral-100"
                         : "text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
@@ -360,10 +360,10 @@ export default function Home() {
               </div>
             </fieldset>
 
-            <label className="block space-y-1 text-sm">
-              <span className="font-medium text-neutral-800 dark:text-neutral-200">Focus note</span>
+            <label className="block space-y-1.5 text-[15px]">
+              <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">Focus note</span>
               <textarea
-                className="min-h-[120px] w-full rounded-lg border border-neutral-200/90 bg-[var(--background)] px-3 py-2 dark:border-neutral-700/80"
+                className="min-h-[120px] w-full rounded-lg border border-neutral-200/90 bg-[var(--background)] px-3.5 py-2.5 text-[15px] leading-relaxed dark:border-neutral-700/80"
                 value={preferences}
                 onChange={(e) => setPreferences(e.target.value)}
                 placeholder="e.g. Keep tech discussion and product strategy. Skip sponsor reads and unrelated tangents."
@@ -372,15 +372,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section aria-labelledby="source-heading" className="digest-composer p-6 sm:p-7">
+        <section aria-labelledby="source-heading" className="digest-composer p-6 sm:p-8">
           <div className="mb-6 border-b border-[var(--digest-border)] pb-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-600/95 dark:text-emerald-400/90">
+            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-emerald-600/95 dark:text-emerald-400/90">
               Source
             </p>
-            <h2 id="source-heading" className="mt-1 text-lg font-semibold tracking-tight text-[var(--foreground)]">
+            <h2 id="source-heading" className="mt-1.5 text-xl font-semibold tracking-tight text-[var(--foreground)]">
               {sourceMode === "raw text" ? "Raw text" : "Link a video"}
             </h2>
-            <p className="mt-1.5 max-w-2xl text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-400">
               {sourceMode === "raw text"
                 ? "Paste any long-form text. Blank lines between paragraphs help."
                 : "Paste a link and captions will be pulled automatically."}
@@ -392,7 +392,7 @@ export default function Home() {
                 <textarea
                   required={sourceMode === "raw text"}
                   aria-labelledby="source-heading"
-                  className="min-h-[220px] w-full rounded-lg border border-[var(--digest-border)] bg-[var(--background)] px-3 py-2 font-mono text-sm shadow-inner shadow-neutral-900/[0.02] dark:shadow-black/20"
+                  className="min-h-[220px] w-full rounded-lg border border-[var(--digest-border)] bg-[var(--background)] px-3.5 py-2.5 font-mono text-[14px] leading-relaxed shadow-inner shadow-neutral-900/[0.02] dark:shadow-black/20"
                   value={source}
                   onChange={(e) => setSource(e.target.value)}
                   placeholder="Article, newsletter, or full transcript..."
@@ -403,12 +403,12 @@ export default function Home() {
                     required={sourceMode === "youtube"}
                     type="url"
                     aria-labelledby="source-heading"
-                    className="w-full rounded-lg border border-[var(--digest-border)] bg-[var(--background)] px-3 py-2 shadow-inner shadow-neutral-900/[0.02] dark:shadow-black/20"
+                    className="w-full rounded-lg border border-[var(--digest-border)] bg-[var(--background)] px-3.5 py-2.5 text-[15px] shadow-inner shadow-neutral-900/[0.02] dark:shadow-black/20"
                     value={youtubeUrl}
                     onChange={(e) => setYoutubeUrl(e.target.value)}
                     placeholder="https://www.youtube.com/watch?v=..."
                   />
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  <p className="text-[13px] text-neutral-500 dark:text-neutral-400">
                     The video needs captions or auto-generated subtitles.
                   </p>
                 </>
@@ -418,13 +418,13 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-3">
               {loading ? (
                 <>
-                  <span className="text-sm text-neutral-600 dark:text-neutral-400" aria-live="polite">
+                  <span className="text-[15px] text-neutral-600 dark:text-neutral-400" aria-live="polite">
                     {runningLabel}
                   </span>
                   <button
                     type="button"
                     onClick={cancelRun}
-                    className="rounded-lg border border-neutral-300 bg-[var(--background)] px-4 py-2 text-sm font-semibold text-[var(--foreground)] hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
+                    className="rounded-lg border border-neutral-300 bg-[var(--background)] px-5 py-2 text-sm font-semibold text-[var(--foreground)] hover:bg-neutral-100 dark:border-neutral-600 dark:hover:bg-neutral-800"
                   >
                     Cancel
                   </button>
@@ -432,7 +432,7 @@ export default function Home() {
               ) : (
                 <button
                   type="submit"
-                  className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
+                  className="rounded-lg bg-amber-600 px-5 py-2.5 text-[15px] font-semibold text-white hover:bg-amber-700"
                 >
                   Sieve it
                 </button>
@@ -456,7 +456,7 @@ export default function Home() {
       />
 
       {transcriptError && (
-        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
+        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-[15px] text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
           <p>Transcript error: {transcriptError}</p>
           <button
             type="button"
@@ -472,7 +472,7 @@ export default function Home() {
       )}
 
       {jobError && (
-        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
+        <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-[15px] text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-100">
           <p>Digest error: {jobError}</p>
           {lastSubmitRef.current && (
             <button
@@ -492,18 +492,18 @@ export default function Home() {
       {showExample && exampleDoc && !loading && !doc && (
         <section className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="rounded-md bg-amber-100 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-widest text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
+            <div className="rounded-md bg-amber-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
               Example
             </div>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-[15px] text-neutral-500 dark:text-neutral-400">
               JRE #2219, Joe Rogan & Mark Zuckerberg
             </p>
           </div>
           <div className="max-w-3xl rounded-lg border border-neutral-200/90 bg-neutral-50/90 px-4 py-3 dark:border-neutral-700/80 dark:bg-neutral-900/50">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-500 dark:text-neutral-400">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-neutral-500 dark:text-neutral-400">
               Focus for this example
             </p>
-            <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">{EXAMPLE_FOCUS_NOTE}</p>
+            <p className="text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300">{EXAMPLE_FOCUS_NOTE}</p>
           </div>
           <DigestReader doc={exampleDoc} />
         </section>
